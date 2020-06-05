@@ -5,46 +5,46 @@ ha noi
 phong a
 2
 tran van b
-02/02/2000ha nam
+02/02/2000
 ha nam
 phong b
 3
 le van c
-03/03/2000ha tay
+03/03/2000
 ha tay
 phong c
 4
 nguyen thi v
-03/01/1999ha noi
+03/01/1999
 ha noi
 phong b
 5
 do thi b
-05/09/2001nam dinh
+05/09/2001
 nam dinh
 phong d
 6
 tran thi e
-04/08/1998nghe an
+04/08/1998
 nghe an
 phong e
 7
 nguyen van n
-11/12/1999ha noi
+11/12/1999
 ha noi
 phong d
 8
 le van p
-28/11/2001hoa binh
+28/11/2001
 hoa binh
 phong e
 9
 le van c
-19/09/1998ha nam
+19/09/1998
 ha nam
 phong e
 10
 tran dan
-12/09/1999ninh binh
+12/09/1999
 ninh binh
 phong d
