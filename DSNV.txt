@@ -1,0 +1,50 @@
+1
+nguyen van a
+1/1/2000
+ha noi
+phong a
+2
+tran van b
+02/02/2000ha nam
+ha nam
+phong b
+3
+le van c
+03/03/2000ha tay
+ha tay
+phong c
+4
+nguyen thi v
+03/01/1999ha noi
+ha noi
+phong b
+5
+do thi b
+05/09/2001nam dinh
+nam dinh
+phong d
+6
+tran thi e
+04/08/1998nghe an
+nghe an
+phong e
+7
+nguyen van n
+11/12/1999ha noi
+ha noi
+phong d
+8
+le van p
+28/11/2001hoa binh
+hoa binh
+phong e
+9
+le van c
+19/09/1998ha nam
+ha nam
+phong e
+10
+tran dan
+12/09/1999ninh binh
+ninh binh
+phong d
