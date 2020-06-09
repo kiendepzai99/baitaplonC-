@@ -40,7 +40,7 @@ void tim(){
             bpct=strtok(NULL,",");
             cout<<"Bo phan cong tac:"<<bpct<<endl;
 
-        }
+        } else { cout <<"Khong tim thay nhan vien" ; break; }
     }
 }
 
@@ -66,9 +66,7 @@ void nhap(NhanVien &nv ){
     DSNV<<nv.bpct;
     DSNV.close();
 }
-
-int main()
-{
+void luaChon() {
     int t;
     printf("\n=========================================");
     printf("\n= 1-Nhap thong tin nhan vien            =");
@@ -82,16 +80,37 @@ int main()
     {   int n;
         printf("\nSo luong nhan vien can nhap: ");
         scanf("%d",&n);
-        NhanVien a[n];
+        NhanVien nv[n];
         for(int i = 0; i< n; ++i){
             printf("\nNhap nhan vien thu %d:", i+1);
-            nhap(a[i]);
+            nhap(nv[i]);
         }
-
+        int a;
+        printf("\n\n 3-Tro ve");
+        printf("\n 4-Thoat ");
+        printf("\nChon chuc nang (3-4): ");
+        scanf("%d",&a);
+        switch(a){
+        case 3: luaChon();
+        case 4: break;
+        }
     }
     case 2:
         fflush(stdin);
         tim();
-
+        int a;
+        printf("\n\n 3-Tro ve");
+        printf("\n 4-Thoat ");
+        printf("\nChon chuc nang (3-4): ");
+        scanf("%d",&a);
+        switch(a){
+        case 3: luaChon();
+        case 4: break;
+        }
     }
+
+}
+int main()
+{
+    luaChon();
 }
