@@ -13,72 +13,64 @@ struct NhanVien{
     char diaChi[50];
     char bpct[30];
 };
-string convertToString(char* a)
-{   int size = sizeof(a)/ sizeof(char);
-    int i;
-    string s = "";
-    for (i = 0; i < size; i++) {
-        s = s + a[i];
-    }
-    return s;
-}
-bool soSanh (char ma[], string s1){
 
-    std::string s(ma);
-    if(s1.compare(s)==0)
-        return true;
-
-
-    return false;
-}
-void tim(char ma[]){
-
+void tim(){
+        cout << "Nhap ma nhan vien can tim: ";
+        string s;
+        getline(cin, s);
     fstream file("DSNV.txt",ios::in);
-    if (file.is_open()) {
-        string line;
-        while (getline(file,line )) {
 
-            if(soSanh(ma,line)){
-                cout << line << endl;
 
-               //in ra thong tin tren 4 dong tiep theo ?
-            }
-            ;
+    NhanVien nv;
 
+    while (!file.eof())
+    {
+        char temp[255];
+        file.getline(temp, 255);
+        char *line = temp;
+
+        char *mnv,*ht,*ntns,*dc,*bpct;
+        mnv=strtok(line,",");
+
+        if(mnv==s){
+            cout<<"Ma nhan vien:"<<mnv<<endl;
+            ht=strtok(NULL,",");
+            cout<<"Ho ten:"<<ht<<endl;
+            ntns=strtok(NULL,",");
+            cout<<"Ngay thang nam sinh:"<<ntns<<endl;
+            dc=strtok(NULL,",");
+            cout<<"Dia chi:"<<dc<<endl;
+            bpct=strtok(NULL,",");
+            cout<<"Bo phan cong tac:"<<bpct<<endl;
+            break;
         }
-        file.close();
     }
-
-
-
 }
 
-typedef NhanVien NV;
 void nhap(NhanVien &nv ){
     fstream DSNV;
     DSNV.open("DSNV.txt",ios::app);
-
+    fflush(stdin);
     printf("\nNhap ma nhan vien: ");  gets(nv.maNhanVien); fflush(stdin);
     printf("\nNhap ho va ten nhan vien: ");  gets(nv.hoTen); fflush(stdin);
     printf("\nNhap ngay thang nam sinh: ");  gets(nv.ngayThangNamSinh); fflush(stdin);
     printf("\nNhap dia chi: ");  gets(nv.diaChi); fflush(stdin);
     printf("\nNhap bo phan cong tac: ");  gets(nv.bpct); fflush(stdin);
 
+    DSNV<<"\n";
     DSNV<<nv.maNhanVien;
-    DSNV<<"\n" ;
+    DSNV<<"," ;
     DSNV<<nv.hoTen;
-    DSNV<<"\n" ;
+    DSNV<<"," ;
     DSNV<<nv.ngayThangNamSinh;
-    DSNV<<"\n" ;
+    DSNV<<"," ;
     DSNV<<nv.diaChi;
-    DSNV<<"\n" ;
+    DSNV<<"," ;
     DSNV<<nv.bpct;
-    DSNV<<"\n" ;
-
     DSNV.close();
 }
 
-int main(int argc, char *argv[])
+int main()
 {
     int t;
     printf("\n=========================================");
@@ -100,10 +92,8 @@ int main(int argc, char *argv[])
         break;
     }
     case 2:
-        char ma[3];
-        printf("\nNhap ma can tim: ");
-        scanf("%c",&ma);
-        tim(ma);
+    {   tim();
     }
-    return 0;
+
+}
 }
