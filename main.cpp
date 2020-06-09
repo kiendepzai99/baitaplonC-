@@ -15,24 +15,21 @@ struct NhanVien{
 };
 
 void tim(){
-        cout << "Nhap ma nhan vien can tim: ";
-        string s;
-        getline(cin, s);
-    fstream file("DSNV.txt",ios::in);
-
+    fstream file;
+    file.open("DSNV.txt",ios::in);
+    string ma;
+    cout << "Nhap ma nhan vien can tim: ";
+    getline(cin, ma);
 
     NhanVien nv;
-
     while (!file.eof())
     {
         char temp[255];
         file.getline(temp, 255);
         char *line = temp;
-
         char *mnv,*ht,*ntns,*dc,*bpct;
         mnv=strtok(line,",");
-
-        if(mnv==s){
+        if(mnv==ma){
             cout<<"Ma nhan vien:"<<mnv<<endl;
             ht=strtok(NULL,",");
             cout<<"Ho ten:"<<ht<<endl;
@@ -42,7 +39,7 @@ void tim(){
             cout<<"Dia chi:"<<dc<<endl;
             bpct=strtok(NULL,",");
             cout<<"Bo phan cong tac:"<<bpct<<endl;
-            break;
+
         }
     }
 }
@@ -80,7 +77,8 @@ int main()
     printf("\nChon chuc nang (1-2)");
     scanf("%d",&t);
     switch(t)
-    { case 1:
+    {
+    case 1:
     {   int n;
         printf("\nSo luong nhan vien can nhap: ");
         scanf("%d",&n);
@@ -89,11 +87,11 @@ int main()
             printf("\nNhap nhan vien thu %d:", i+1);
             nhap(a[i]);
         }
-        break;
+
     }
     case 2:
-    {   tim();
-    }
+        fflush(stdin);
+        tim();
 
-}
+    }
 }
