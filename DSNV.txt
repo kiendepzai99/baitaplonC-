@@ -1,50 +1,10 @@
-1
-nguyen van a
-1/1/2000
-ha noi
-phong a
-2
-tran van b
-02/02/2000
-ha nam
-phong b
-3
-le van c
-03/03/2000
-ha tay
-phong c
-4
-nguyen thi v
-03/01/1999
-ha noi
-phong b
-5
-do thi b
-05/09/2001
-nam dinh
-phong d
-6
-tran thi e
-04/08/1998
-nghe an
-phong e
-7
-nguyen van n
-11/12/1999
-ha noi
-phong d
-8
-le van p
-28/11/2001
-hoa binh
-phong e
-9
-le van c
-19/09/1998
-ha nam
-phong e
-10
-tran dan
-12/09/1999
-ninh binh
-phong d
+01,nguyen a,1/1/1,ha noi,sinh vien
+02,le b,2/2/2,ha nam,giang vien
+03,tran van b,3/2/1,hoa binh,sinh vien
+04,dao van b,3/4/2,ha noi,sinh vien
+05,nguyen thi a,3/6/4,ha nam,sinh vien
+06,le thi e,9/6/8,ha noi,giang vien
+07,le van s,03/04/02,hoa binh,sinh vien
+08,dao thu h,4/7/6,ninh binh,giang vien
+09,nguyen vinh t,3/4/6,nam dinh,giang vien
+10,le thi e,3/2/1,phu tho,sinh vien
