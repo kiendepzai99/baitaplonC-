@@ -20,7 +20,7 @@ void tim(){
     string ma;
     cout << "Nhap ma nhan vien can tim: ";
     getline(cin, ma);
-
+    int i=0;
     NhanVien nv;
     while (!file.eof())
     {
@@ -39,9 +39,12 @@ void tim(){
             cout<<"Dia chi:"<<dc<<endl;
             bpct=strtok(NULL,",");
             cout<<"Bo phan cong tac:"<<bpct<<endl;
+            i=1;
+            break;
+        }
 
-        } else { cout <<"Khong tim thay nhan vien" ; break; }
     }
+    if(i==0){cout <<"Khong tim thay nhan vien" ;}
 }
 
 void nhap(NhanVien &nv ){
