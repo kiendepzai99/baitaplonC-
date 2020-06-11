@@ -4,7 +4,16 @@
 #include <conio.h>
 #include <fstream>
 #include <string.h>
+#include <vector>
+#include <Import.h>
+
 using namespace std;
+
+struct DiemDanh{
+    char maNhanVien[3];
+    char ngayDiemDanh[10];
+    char trangThaiDiLam[4];
+};
 
 struct NhanVien{
     char maNhanVien[3];
@@ -12,28 +21,30 @@ struct NhanVien{
     char ngayThangNamSinh[10];
     char diaChi[50];
     char bpct[30];
+    void read(ifstream &);
+    void write(ofstream &);
+};
 
-};
-struct DiemDanh{
-    char maNhanVien[3];
-    char ngayDiemDanh[10];
-    char trangThaiDiLam[4];
-};
 void tim(){
-    fstream file;
-    file.open("DSNV.txt",ios::in);
+    fstream DSNV;
+    DSNV.open("DSNV.txt",ios::in);
+    fstream DSDD;
+    DSDD.open("DSDD.txt",ios::in);
     string ma;
     cout << "Nhap ma nhan vien can tim: ";
     getline(cin, ma);
     int i=0;
+    int j=0;
+    DiemDanh d;
     NhanVien nv;
-    while (!file.eof())
+    while (!DSNV.eof())
     {
         char temp[255];
-        file.getline(temp, 255);
+        DSNV.getline(temp, 255);
         char *line = temp;
         char *mnv,*ht,*ntns,*dc,*bpct;
         mnv=strtok(line,",");
+
         if(mnv==ma){
             cout<<"Ma nhan vien:"<<mnv<<endl;
             ht=strtok(NULL,",");
@@ -49,16 +60,38 @@ void tim(){
         }
 
     }
-    if(i==0){cout <<"Khong tim thay nhan vien" ;}
-}
+    cout<<"Thong tin diem danh:"<<endl;
+    while (!DSDD.eof())
+    {
+        char temp[255];
+        DSDD.getline(temp, 255);
+        char *line = temp;
+        char *mnv,*ndd,*ttdl;
+        mnv=strtok(line,",");
 
+        if(mnv==ma){
+
+
+            ndd=strtok(NULL,",");
+            cout<<"Ngay:"<<ndd<<": ";
+            ttdl=strtok(NULL,",");
+            cout<<ttdl<<endl;
+
+            j=1;
+            break;
+        }
+
+    }
+    if(i==0){cout <<"Khong tim thay nhan vien" ;}
+    if(j==0){cout <<"Khong co thong tin diem danh" ;}
+}
 void diemDanh(DiemDanh &d){
     int n;
     fstream DSDD;
     DSDD.open("DSDD.txt",ios::app );
     fflush(stdin);
     printf("\nNhap ma nhan vien: ");  gets(d.maNhanVien); fflush(stdin);
-    DSDD<<"\n";
+
     DSDD<<d.maNhanVien;
     printf("\nNhap so ngay diem danh: ");
     scanf("%d",&n);
@@ -70,10 +103,10 @@ void diemDanh(DiemDanh &d){
         DSDD<<d.ngayDiemDanh;
         DSDD<<"," ;
         DSDD<<d.trangThaiDiLam;
+        DSDD<<"\n";
     }
     DSDD.close();
 }
-
 void nhap(NhanVien &nv ){
     fstream DSNV;
     DSNV.open("DSNV.txt",ios::app);
@@ -96,14 +129,47 @@ void nhap(NhanVien &nv ){
     DSNV<<nv.bpct;
     DSNV.close();
 }
+void NhanVien::read(ifstream &in){
+    char lines[500];
+    fflush(stdin);
+    in.getline(lines,500);
+
+    string str = lines;
+    vector<string> v = Import::split (str, ',');
+
+
+}
+void importCSV(){
+    vector<NhanVien*> list;
+    NhanVien *nv;
+    // phần này chỉ lấy ra số dòng trong file csv và xuống khỏi dòng đầu tiên
+    ifstream ifs("ImportData.csv", ios::in);
+    int n;
+    string abc;
+    n=Import::numberLine(); // lấy ra số dòng
+    n=n-1;
+    cout<<n<<endl;
+    ifs >> abc;
+    char ss[5];
+    ifs.getline(ss, 3);// loai bo xuong dong
+    // dùng vì cần checkid // đọc ra tất cả
+    for (int i=0 ; i < n ; i++){
+        nv = new NhanVien();
+        nv->read(ifs);
+        list.push_back(nv);
+    }
+
+
+}
 void luaChon() {
     int t;
     printf("\n=========================================");
     printf("\n= 1-Nhap thong tin nhan vien            =");
     printf("\n= 2-Tim thong tin nhan vien             =");
-    printf("\n= 3-Nhap thong tin diem danh            =");
+    printf("\n= 3-Import tu file csv                  =");
+    printf("\n= 4-Nhap thong tin diem danh            =");
     printf("\n=========================================");
-    printf("\nChon chuc nang (1-2-3)");
+    printf("\nChon chuc nang (1-2-3-4)");
     scanf("%d",&t);
     switch(t)
     {
@@ -117,13 +183,13 @@ void luaChon() {
             nhap(nv[i]);
         }
         int a;
-        printf("\n\n 4-Tro ve");
-        printf("\n 5-Thoat ");
-        printf("\nChon chuc nang (4-5): ");
+        printf("\n\n 5-Tro ve");
+        printf("\n 6-Thoat ");
+        printf("\nChon chuc nang (5-6): ");
         scanf("%d",&a);
         switch(a){
-        case 4: luaChon();
-        case 5: exit(0);
+        case 5: luaChon();
+        case 6: exit(0);
         }
     }
     case 2:
@@ -131,16 +197,27 @@ void luaChon() {
         fflush(stdin);
         tim();
         int a;
-        printf("\n\n 4-Tro ve");
-        printf("\n 5-Thoat ");
-        printf("\nChon chuc nang (4-5): ");
+        printf("\n\n 5-Tro ve");
+        printf("\n 6-Thoat ");
+        printf("\nChon chuc nang (5-6): ");
         scanf("%d",&a);
         switch(a){
-        case 4: luaChon();
-        case 5: exit(0);
-
+        case 5: luaChon();
+        case 6: exit(0);
         }}
     case 3:
+    {   importCSV();
+        int a;
+        printf("\n\n 5-Tro ve");
+        printf("\n 6-Thoat ");
+        printf("\nChon chuc nang (5-6): ");
+        scanf("%d",&a);
+        switch(a){
+        case 5: luaChon();
+        case 6: exit(0);
+        }
+    }
+    case 4:
     {   int n;
         printf("\nSo luong nhan vien can nhap: ");
         scanf("%d",&n);
@@ -150,13 +227,13 @@ void luaChon() {
             diemDanh(d[i]);
         }
         int a;
-        printf("\n\n 4-Tro ve");
-        printf("\n 5-Thoat ");
-        printf("\nChon chuc nang (4-5): ");
+        printf("\n\n 5-Tro ve");
+        printf("\n 6-Thoat ");
+        printf("\nChon chuc nang (5-6): ");
         scanf("%d",&a);
         switch(a){
-        case 4: luaChon();
-        case 5: exit(0);
+        case 5: luaChon();
+        case 6: exit(0);
         }
     }
     }
@@ -164,5 +241,6 @@ void luaChon() {
 }
 int main()
 {
+
     luaChon();
 }
