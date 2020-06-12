@@ -70,13 +70,10 @@ void tim(){
         mnv=strtok(line,",");
 
         if(mnv==ma){
-
-
             ndd=strtok(NULL,",");
             cout<<"Ngay:"<<ndd<<": ";
             ttdl=strtok(NULL,",");
             cout<<ttdl<<endl;
-
             j=1;
 
         }
@@ -90,20 +87,17 @@ void diemDanh(DiemDanh &d){
     fstream DSDD;
     DSDD.open("DSDD.txt",ios::app );
 
-        fflush(stdin);
-        printf("\nNhap ma nhan vien: ");  gets(d.maNhanVien); fflush(stdin);
-
-        DSDD<<d.maNhanVien;
-
-
-        fflush(stdin);
-        printf("\nNhap ngay diem danh: ");  gets(d.ngayDiemDanh); fflush(stdin);
-        printf("\nNhap trang thai di lam: ");  gets(d.trangThaiDiLam);
-        DSDD<<"," ;
-        DSDD<<d.ngayDiemDanh;
-        DSDD<<"," ;
-        DSDD<<d.trangThaiDiLam;
-        DSDD<<"\n";
+    fflush(stdin);
+    printf("\nNhap ma nhan vien: ");  gets(d.maNhanVien); fflush(stdin);
+    DSDD<<d.maNhanVien;
+    fflush(stdin);
+    printf("\nNhap ngay diem danh: ");  gets(d.ngayDiemDanh); fflush(stdin);
+    printf("\nNhap trang thai di lam: ");  gets(d.trangThaiDiLam);
+    DSDD<<"," ;
+    DSDD<<d.ngayDiemDanh;
+    DSDD<<"," ;
+    DSDD<<d.trangThaiDiLam;
+    DSDD<<"\n";
 
     DSDD.close();
 }
@@ -140,8 +134,9 @@ void NhanVien::read(ifstream &in){
 
 }
 void importCSV(){
-    vector<NhanVien*> list;
-    NhanVien *nv;
+    fstream DSNV;
+    DSNV.open("DSNV.txt",ios::app);
+    //    vector<NhanVien*> list;
     // phần này chỉ lấy ra số dòng trong file csv và xuống khỏi dòng đầu tiên
     ifstream ifs("ImportData.csv", ios::in);
     int n;
@@ -152,13 +147,31 @@ void importCSV(){
     ifs >> abc;
     char ss[5];
     ifs.getline(ss, 3);// loai bo xuong dong
-    // dùng vì cần checkid // đọc ra tất cả
-    for (int i=0 ; i < n ; i++){
-        nv = new NhanVien();
-        nv->read(ifs);
-        list.push_back(nv);
-    }
 
+    while (!ifs.eof())
+    {
+        char temp[255];
+        ifs.getline(temp, 255);
+        char *line = temp;
+        char *mnv,*ht,*ntns,*dc,*bpct;
+        mnv=strtok(line,",");
+        DSNV<<"\n";
+        DSNV<<mnv;
+        ht=strtok(NULL,",");
+        DSNV<<"," ;
+        DSNV<<ht;
+        ntns=strtok(NULL,",");
+        DSNV<<"," ;
+        DSNV<<ntns;
+        dc=strtok(NULL,",");
+        DSNV<<"," ;
+        DSNV<<dc;
+        bpct=strtok(NULL,",");
+        DSNV<<"," ;
+        DSNV<<bpct;
+
+  }
+     DSNV.close();
 
 }
 void luaChon() {
