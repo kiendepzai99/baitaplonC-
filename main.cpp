@@ -78,7 +78,7 @@ void tim(){
             cout<<ttdl<<endl;
 
             j=1;
-            break;
+
         }
 
     }
@@ -89,13 +89,13 @@ void diemDanh(DiemDanh &d){
     int n;
     fstream DSDD;
     DSDD.open("DSDD.txt",ios::app );
-    fflush(stdin);
-    printf("\nNhap ma nhan vien: ");  gets(d.maNhanVien); fflush(stdin);
 
-    DSDD<<d.maNhanVien;
-    printf("\nNhap so ngay diem danh: ");
-    scanf("%d",&n);
-    for(int i = 0; i< n; ++i){
+        fflush(stdin);
+        printf("\nNhap ma nhan vien: ");  gets(d.maNhanVien); fflush(stdin);
+
+        DSDD<<d.maNhanVien;
+
+
         fflush(stdin);
         printf("\nNhap ngay diem danh: ");  gets(d.ngayDiemDanh); fflush(stdin);
         printf("\nNhap trang thai di lam: ");  gets(d.trangThaiDiLam);
@@ -104,7 +104,7 @@ void diemDanh(DiemDanh &d){
         DSDD<<"," ;
         DSDD<<d.trangThaiDiLam;
         DSDD<<"\n";
-    }
+
     DSDD.close();
 }
 void nhap(NhanVien &nv ){
