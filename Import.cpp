@@ -10,7 +10,7 @@ int Import :: numberLine(){
     char c;
     int numchars, numlines;
 
-    f.open("C:\\Users\\Giang\\Desktop\\ImportData.csv");
+    f.open("ImportData.csv");
 
     numchars = 0;
     numlines = 0;
