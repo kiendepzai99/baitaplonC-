@@ -26,8 +26,8 @@ struct NhanVien{
     void read(ifstream &);
     void write(ofstream &);
 };
-void timTheoTen(){
 
+void timTheoTen(){
     fstream DSNV;
     DSNV.open("DSNV.txt",ios::in);
     string ten;
@@ -118,6 +118,7 @@ void tim(){
     if(i==0){cout <<"Khong tim thay nhan vien" ;}
     if(j==0){cout <<"Khong co thong tin diem danh" ;}
 }
+
 void diemDanh(DiemDanh &d){
     //luu thong tin diem danh vao file dsdd.txt
     int n;
@@ -136,6 +137,7 @@ void diemDanh(DiemDanh &d){
     DSDD<<"\n";
     DSDD.close();
 }
+
 void nhap(NhanVien &nv ){
     fstream DSNV;
     DSNV.open("DSNV.txt",ios::app);
@@ -193,14 +195,15 @@ void importCSV(){
         cout<<"file trong hoac bi loi"<<endl;
     } else { cout<<"Import thanh cong !"<<endl; }
 }
+
 string month(char *date){
     char *ngay, *thang;
     ngay=strtok(date,"/");
     thang=strtok(NULL,"/");
     return thang;
 }
-void xemTheoNhanVien(string thang){
 
+void xemTheoNhanVien(string thang){
     fstream DSNV;
     DSNV.open("DSNV.txt",ios::in);
     fstream DSDD;
@@ -215,7 +218,7 @@ void xemTheoNhanVien(string thang){
         char temp[255];
         DSNV.getline(temp, 255);
         char *line = temp;
-        char *mnv,*ht,*ntns,*dc,*bpct;
+        char *mnv, *ht, *ntns, *dc, *bpct;
         mnv=strtok(line,",");
         if (mnv==ma){
             ht=strtok(NULL,",");
@@ -227,7 +230,7 @@ void xemTheoNhanVien(string thang){
         char temp2[255],date[255];
         DSDD.getline(temp2, 255);
         char *line2 = temp2;
-        char *mnv2,*ndd,*day,*ttdl;
+        char *mnv2,*ndd, *day, *ttdl;
         mnv2=strtok(line2,",");
         ndd=strtok(NULL,",");
         ttdl=strtok(NULL,",");
@@ -246,6 +249,7 @@ bool exist(vector<string> ds, string a){
         }
     return false;
 }
+
 void xemTheoBoPhan(string thang){
     vector<string> dsma;
     vector<string> dsten;
@@ -309,6 +313,7 @@ void xemTheoBoPhan(string thang){
     }
 
 }
+
 void xemTatCa(string thang){
     vector<string> dsma;
     vector<string> dsten;
@@ -368,6 +373,7 @@ void xemTatCa(string thang){
     }
     xemTatCa.close();
 }
+
 void luaChon() {
     int t;
     printf("\n=========================================");
@@ -494,6 +500,7 @@ void luaChon() {
     }
 
 }
+
 int main()
 {
 
